@@ -9,52 +9,52 @@
 예시) <br> 1. ```console.log(`올해는 ${new Date().getFullYear()}년 입니다.`);``` <strong>실행결과 : "올해는 2021년 입니다." </strong>
     2. ```let var1 = 5;``` <br>　```console.log(`var1의 값은 ${var1} 입니다.`); ``` <strong>   실행결과 : "var1의 값은 5입니다." </strong>
 #### 3. 논리/비교 연산자
-> 자바와 비슷하게 OR연산자(||), AND연산자(&&)가 있다. True or False 를 출력한다.
-> 예시)
->   ```let var1 = 3;```
->   ```let var2 = 5;```
->   ```console.log(var == 3 || var == 5);```
+> 자바와 비슷하게 OR연산자(||), AND연산자(&&)가 있다. True or False 를 출력한다.<br>
+> 예시)<br>
+>   ```let var1 = 3;```<br>
+>   ```let var2 = 5;```<br>
+>   ```console.log(var == 3 || var == 5);```<br>
     <strong> 실행결과 -> True </strong>
 
 #### 4. 변수 (let)
-> 자바에는 변수 var, let, const가 있다. 본 수업에서는 let에 대해서 배웠다.
+> 자바에는 변수 var, let, const가 있다. 본 수업에서는 let에 대해서 배웠다.<br>
  ```let a=0;``` 과 같이 let형 변수 <b>a</b>를 선언할 수 있다. 하지만 그 뒤에
-  ```let a=15;``` 와 같은 중복선언은 불가능하다. a의 값은 15로 바꾸고 싶다면 ```a = 15;```과 같이 재할당 해주어야 한다.
-  예시)
-  ```let var1 = 15;```
-  ```console.log(var1);```
-  ```let var1 = 20;``` // *Uncaught SyntaxError: Identifier 'var1' has already been declared*
-  ```var1 *= 2;``` // *var1 기존에 할당되었던, 15 \* 2를 해준다는 의미이다.*
-  ```console.log(var1);``` // **
+  ```let a=15;``` 와 같은 중복선언은 불가능하다. a의 값은 15로 바꾸고 싶다면 ```a = 15;```과 같이 재할당 해주어야 한다.<br>
+  예시)<br>
+  ```let var1 = 15;```<br>
+  ```console.log(var1);```<br>
+  ```let var1 = 20;``` // *Uncaught SyntaxError: Identifier 'var1' has already been declared*<br>
+  ```var1 *= 2;``` // *var1 기존에 할당되었던, 15 \* 2를 해준다는 의미이다.*<br>
+  ```console.log(var1);``` // **<br>
   **실행결과 : 15, 30**
 
 #### 5. 복합 대입 연산자 (+=,-=,*=,)
-> +=, -=, *=, /= 와 같이 복합 대입 연산자를 사용 할 수 있다.
-만약 ```a += 5; > a = a+5```와 같이 되는 것이다. 이와 같은 경우로 -= 는 **-** ,*= 는 **\***, /= 는 **/** <br> 이들 말고도 %=(나머지), &=(And). |= (OR) 와 같은 복합대입연산자도 있다.
-    ```let var1 = 5;```
-    ```var1 += 5;```
-    ```console.log(var1);```
+> +=, -=, *=, /= 와 같이 복합 대입 연산자를 사용 할 수 있다.<br>
+만약 ```a += 5; > a = a+5```와 같이 되는 것이다.<br> 이와 같은 경우로 -= 는 **-** ,*= 는 **\***, /= 는 **/** <br> 이들 말고도 %=(나머지), &=(And). |= (OR) 와 같은 복합대입연산자도 있다.<br>
+    ```let var1 = 5;```<br>
+    ```var1 += 5;```<br>
+    ```console.log(var1);```<br>
     **실행결과 : 10**
 
 #### 6. 증감연산자
 > 증감연산자는 ++, -- 기호를 통해 연산을 하며, 만약 변수 a에 5가 할당 되어있고, a++라고 하면 a의 값은 1의 증가 하게 된다. 이런 증감연산자의 경우 반복문으로 이용을 많이 한다. 하지만 ++, --와 같은 증감연산자를 변수 앞에다 붙이냐, 뒤에다 붙이냐에 따라 값이 달라질 수도 있다. 증감연산자를 변수 앞에 달게 되면 (++a, --a) 이 코드를 실행과 동시에 증감을 실행한다. 하지만 뒤에다 붙이게 되면 (a++, a--) 이 구문을 실행한 다음 코드부터 증감을 실행하게 된다. 예시를 통해 이 결과를 확인해보자.
-<b>case 1: </b>
- ```let var1 = 5;```
- ```console.log(var1++);``` <i> // 증감연산자를 뒤에 붙였다.  </i>
- <b>실행결과 : 5 </b><br>
- <b>case 2:</b>
- ```let var1 = 5;```
- ```console.log(++var1)``` <i> // 증감연산즈를 앞에 붙였다 </i>
-  <b>실행결과 : 6 </b><br>
+<b>case 1: </b><br>
+ ```let var1 = 5;```<br>
+ ```console.log(var1++);``` <i> // 증감연산자를 뒤에 붙였다.  </i><br>
+ <b>실행결과 : 5 </b><br><br>
+ <b>case 2:</b><br>
+ ```let var1 = 5;```<br>
+ ```console.log(++var1)``` <i> // 증감연산즈를 앞에 붙였다 </i><br>
+  <b>실행결과 : 6 </b><br><br>
 
 #### 7. 자료형 검사
 >typeof(대상) 를 통해 자료형을 검사할 수 있다. 바로 예제를 통해 알아보자.
 **예시)**
->```console.log(typeof('안녕'));``` //string 출력
->```console.log(typeof(5));``` // number 출력
->```console.log(typeof(false));``` // boolean 출력
->```console.log(typeof(false));``` // undefined 출력 (여기서 num은 선언되지 않은 변수이다.)
->```console.log(typeof(new Date()));``` // object(객체) 출력
+>```console.log(typeof('안녕'));``` //string 출력<br>
+>```console.log(typeof(5));``` // number 출력<br>
+>```console.log(typeof(false));``` // boolean 출력<br>
+>```console.log(typeof(false));``` // undefined 출력 (여기서 num은 선언되지 않은 변수이다.)<br>
+>```console.log(typeof(new Date()));``` // object(객체) 출력<br>
 이렇게 각각의 type 별로 그 type형을 출력해주는 것을 확인 할 수 있다.
 
 #### 8. 강제 자료형 변환
@@ -69,17 +69,17 @@
 **Number to String** // 365 -> "365"
 >```let var4 = String(123);``` *// var에는 "123"이 들어가서, String형 변수가 된다.*
 >
->**1. Number()**
->Boolean 타입을 강제 형변환한다면, true 는 1, false 는 0으로 출력하게 된다.
+>**1. Number()**<br>
+>Boolean 타입을 강제 형변환한다면, true 는 1, false 는 0으로 출력하게 된다.<br>
 >```console.log(Number(true));``` *// 1 출력* ```console.log(Number(false));``` *// 0 
-출력*
->하지만 문자열이 들어있는 갑을 Number()를 통해 강제로 형변환을 한다면 Nan이 출력이 된다.
-**예시)**
->```console.log(Number("하이루"));``` *// Nan 출력*
->NaN(Not a Number)은 자료형은 '숫자형'이지만 값의 형태를 숫자가 아닌 것을 의미한다.
+출력*<br>
+>하지만 문자열이 들어있는 갑을 Number()를 통해 강제로 형변환을 한다면 Nan이 출력이 된다.<br>
+**예시)**<br>
+>```console.log(Number("하이루"));``` *// Nan 출력*<br>
+>NaN(Not a Number)은 자료형은 '숫자형'이지만 값의 형태를 숫자가 아닌 것을 의미한다.<br>
 >
-> **2. Boolean()** 
->Boonlean 형으로 강제변환을 할 때에는 **0, Nan, ""(빈문자열), null, undefined**의 5개의 요소는 false를 반환한다.
+> **2. Boolean()** <br>
+>Boonlean 형으로 강제변환을 할 때에는 **0, Nan, ""(빈문자열), null, undefined**의 5개의 요소는 false를 반환한다.<br>
 
 #### 9. 자동 형 변환
 > 연산 시 자동으로 형이 변환이 된다.<br>

@@ -58,7 +58,26 @@ test = test || "두번째로 내용을 초기화합니다."; // test는 이미 "
 console.log(test); // "내용을 초기화합니다." 출력
 </code></pre>
 
+#### 6. 기본적인 입력
+>해당 코드를 이용하여 사용자에게 값을 입력받을 수 있다.
+<pre><code>
+const repl = require('repl');
 
+repl.start( {
+    prompt : "<값을 입력해주세요.>";,
+    eval : (command, context, filename, callback) => {
+        let number = Number(command);
+
+        if (isNaN(number)) {
+            console.log("숫자가 아닙니다.");
+        } else {
+            console.log("숫자입니다.");
+        }
+
+        callback();
+    }
+});
+</code></pre>
 ## [03월 23일]
 #### 1. 문자열 배열
 > "안녕하세요" 에서 "녕하" 부문만 빼어내고 싶을 때, "안녕하세요"[1]+"안녕하세요"[2] 와 같이 마치 배열처럼 사용 할 수 있다.  <br>

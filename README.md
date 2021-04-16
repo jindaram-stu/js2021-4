@@ -1,5 +1,213 @@
 # 진승범 [201840230]
 
+## [04월 13일]
+#### 1. 함수 (Function)
+##### 1-1. 익명함수
+> 이름을 붙이지 않고, 변수 안에 함수 생성
+> 함수를 호출하면 내부의 코드 덩어리 모두 실행
+<pre><code>
+let 함수 = function {
+    console.log("익명 함수 첫번째 줄");
+    console.log("익명 함수 두번째 줄");
+}
+
+함수명();
+console.log(함수명);
+
+// 출력결과
+// 익명 함수 첫번째 줄
+// 익명 함수 두번째 줄
+</code></pre>
+##### 1-2. 선언적 함수
+> 이름을 붙여, 함수를 생성
+<pre><code>
+function 함수명() {
+    console.log("선언적 함수 첫번째 줄");
+    console.log("선언적 함수 두번째 줄");
+}
+
+함수명();
+
+// 출력결과
+// 선언적 함수 첫번째 줄
+// 선언적 함수 두번째 줄
+</code></pre>
+
+##### 1-3. 화살표 함수
+> '하나의 표현식을 리턴하는 함수'를 만들 때는 중괄호 생략 가능
+<pre><code>
+let 함수명 = () => {
+    console.log("화살표 함수 첫번째 줄");
+    console.log("화살표 함수 두번째 줄");
+}
+
+함수명();
+
+// 출력결과
+// 화살표 함수 첫번째 줄
+// 화살표 함수 두번째 줄
+</code></pre>
+#### 2. 함수의 기본형태
+###### 함수의 기본형태
+<pre><code>
+function <함수 이름>(<매개변수>) {
+    <함수 코드>;
+    return <리턴 값>;
+} 
+</code></pre>
+###### 함수 예제 (제곱 함수)
+<pre><code>
+function square (x) {
+    return x*x;
+}
+
+console.log(square(5));
+
+// 출력결과
+// 25
+</code></pre>
+###### 여러 매개변수의 함수
+<pre><code>
+funciton multiply (x,y) {
+    return x*y;
+}
+
+console.log(multiply(5,4));
+console.log(multiply(5));
+
+// 실행결과
+// 20
+// NaN
+</code></pre>
+###### 반환형이 없는 함수
+<pre><code>
+function print(x) {
+    console.log(`$[x]를 매개인자로 받는 프린트 함수입니다.`);
+}
+
+print("안녕하세요");
+
+// 실행결과
+// 안녕하세요를 매개인자로 받는 프린트 함수입니다.
+</code></pre>
+
+###### 여러가지 함수 형태
+<pre><code>
+// min 값 부터 max 까지 더하기
+
+function sum(min,max) {
+    let result = 0;
+    for (let i = min; i <= max; i++) {
+        result += i;
+    }
+    return result;
+}
+console.log(sum(5,7));
+
+// 실행결과
+// 18
+</code></pre>
+<pre><code>
+// min 값 부터 max 까지 곱하기
+
+function sum(min,max) {
+    let result = 1;
+    for (let i = min; i <= max; i++) {
+        result *= i;
+    }
+    return result;
+}
+console.log(sum(5,7));
+
+// 실행결과
+// 18
+</code></pre>
+
+#### 3. 매개변수 검사
+> if (!매개변수) {} 를 통해 매개변수가 들어오지 전달되지 않았을 때의 초기값을 설정할 수 있다.
+<pre><code>
+function print2(name, count) {
+    // 기본적으로 변수에는 null 값이 들어있다. 즉 null값이 들어있을 떄 해당 if문을 실행하는 것이다.
+    if (!count) { 
+        count = 1;
+    }
+    console.log(`${name}은 ${count}개 입니다.`);
+}
+    print2("사과",2);
+    print2("사과");
+
+    // 실행결과
+    // 사과는 2개 입니다.
+    // 사과는 1개 입니다.
+</code></pre>
+> <strong> if문 말고 count = count || 1; 로 더 짧게 표현할 수 있다. </strong>
+> a = a || b // a가 true(null X)면 a로 초기화, a가 false(null O)면 b로 초기화
+#### 4.콜백함수 (CallBack)
+> 함수를 매개변수로 받아, 다른 함수에서 매개변수로 받은 함수를 사용할 수도 있습니다. 이를 콜백(Callback) 함수라고 합니다.
+<pre><code>
+function print(callback1, callback2) {
+    return sum(5,4) + multiple(5,4);
+}
+
+function sum(a,b) {
+    return a+b;
+}
+
+function multiple (a,b) {
+    return a*b;
+}
+
+console.log(print(sum(),multiple()));
+</code></pre>
+
+#### 5. 표준 내장 함수
+##### 5-1. 숫자 변환 함수
+> parseInt() : 문자열을 정수로 변환합니다.
+> parseFloat() : 문자열을 실수로 변환합니다.
+<pre><code>
+let var1 = "52";
+let var2 = "52.723";
+let var3 = "1401동";
+
+console.log(parseInt(var1));
+console.log(parseFloat(var2));
+console.log(parseInt(var3));
+</code></pre>
+##### 5-2. 타이머 함수
+> setTimeout(함수, 시간) : 특정 시간 후에 함수를 실행합니다.
+> setInterval(함수, 시간) : 특정 시간마다 함수를 실행합니다.
+> clearInterval(함수) : 특정 시간마다 반복하던 함수를 종료시킵니다.
+
+<pre><code>
+setTimeout(function() {
+    console.log("안녕하세요.");
+}, 1000);
+
+let var5 = setInterval (function() {
+    console.log("안녕하세요2")
+}, 1000);
+
+setTimeout(function() {
+    clearInterval(var5);
+    console.log("함수를 정지합니다.");
+}, 5000);
+
+
+
+// 실행결과
+// (1초후에) 안녕하세요
+// (1초마다) 안녕하세요2
+// 안녕하세요
+// 안녕하세요2
+// 안녕하세요2
+// 안녕하세요2
+// 안녕하세요2
+// Ctrl + C 시 종료.
+</code></pre>
+
+
+
+
 ## [04월 09일]
 #### 1. 역 for 반복문  
 > 감소연산자를 통해 배열을 끝 자리부터 첫 자리까지 출력시키는 for문을 구현할 수 있다.

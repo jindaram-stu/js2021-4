@@ -1,5 +1,52 @@
 # 진승범 [201840230]
 
+## [04월 27일]
+#### 1. setInterval(), setTimeout(), clearInterval()
+
+#### 2. 선언적 함수와 익명함수 호출 순서
+
+#### 3. 익명함수와 화살표 함수의 차이 (this 키워드)
+
+#### 4. 객체
+> 배열은 index 로 값을 구분하지만 객체는 key 값으로 값을 구분한다.
+<pre><code>
+let product = {
+    제품명: '신라면',
+    제조사: '농심'.
+    가격: 900,
+    칼로리 : '500kcal'
+}
+</code></pre>
+> 이런식으로 객체를 구성할 수 있다. 앞에 [제품명, 제조사, 가격, 칼로리]가 key 값이 되는 것이다. 이를 출력하려면<br> console.log(product[key]) 의 형태로 출력할 수 있다.
+<pre><code>
+console.log(product[제품명]);
+console.log(product[제조사]);
+console.log(product[가격]);
+console.log(product[칼로리]);
+</code></pre>
+>이런 형식으로 객체가 가지고 있는 key의 값들을 출력할 수 있다. 또한 for문을 이용하여 객체의 모든 값들을 출력할 수 있다.
+
+<pre><code>
+for (let key in product) {
+    console.log(`${key}: ${product[key]}`);
+}
+</code></pre>
+> 해당 for문을 이용해서 해당 객체의 모든 값을 출력할 수 있다.
+><br>
+>변수뿐만 아니라, 배열, 함수도 역시 객체에 포함될 수 있다.
+
+<pre><code>
+let object = {
+    name: '새우깡',
+    price: 500,
+    print: () => {
+        console.log(`${this.name}의 가격은 ${this.price}입니다.`)
+    }
+}
+
+object.print();
+</code></pre>
+> print 함수에서 ket값의 앞에 this 키워드를 쓰지 않으면, object 스코프 밖의 name 변수와 price 변수를 찾기 때문에 정의되지 않았다고 오류가 뜬다.
 ## [04월 13일]
 #### 1. 함수 (Function)
 ##### 1-1. 익명함수

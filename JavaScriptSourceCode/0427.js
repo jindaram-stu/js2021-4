@@ -40,11 +40,11 @@ foo();
 }
 
 function foo () {
-    console.log("두번째 함수");ㄴ
+    console.log("두번째 함수");
 }
 
-foo();
- */
+foo(); */
+
 /* 선언한 순서에 상관없이, 익명함수와 화살표 함수는 선언적함수를 무조건적으로 덮어씌운다.
 자바스크립트는 코드를 읽을 때, 선언적 함수를 가장 먼저 읽어들이고, 그 후에 실행코드를 읽기 때문에
 선언적 함수르 선언된 foo가 foo () => 의 함수로 덮어씌워지기 때문에 foo() 함수를 실행했을 때, 화살표 함수로
@@ -90,18 +90,27 @@ let object = {
 
 // JSON
 // 객체 배열
-let product = [
+/* let product = [
     {name: '사과', price: 1500},
     {name: '바나나', price: 1300},
     {name: '배', price: 1800},
 ];
 
 console.log(product[0].name);
-/* function printFruit(product) {
+function printFruit(product) {
     console.log(`${product.name}의 가격은 ${product.price}입니다.`);
 }
 
 for (let p1 of product) {
     printFruit(p1);
 } */
+
+function Product(name, price) {
+    this.name = name;
+    this.price = price;
+}
+
+let product = new Product('사과',1500);
+
+console.log(product)
 

@@ -2,6 +2,9 @@
 
 ## [04월 27일]
 #### 1. setInterval(), setTimeout(), clearInterval()
+> setInterval() : 일정 시간마다 함수를 반복 실행
+> setTimeout() : 일정 시간 후에 해당 함수를 실행
+>clearInterval() : 반복하는 함수를 종료
 
 #### 2. 선언적 함수와 익명함수 호출 순서
 
@@ -46,7 +49,31 @@ let object = {
 
 object.print();
 </code></pre>
-> print 함수에서 ket값의 앞에 this 키워드를 쓰지 않으면, object 스코프 밖의 name 변수와 price 변수를 찾기 때문에 정의되지 않았다고 오류가 뜬다.
+> print 함수에서 ket값의 앞에 this 키워드를 쓰지 않으면, object 스코프 밖의 name 변수와 price 변수를 찾기 때문에 정의되지 않았다고 오류가 뜬다. 또한 메소드를 화살표 함수로 선언했을 때 this 키워드를 쓴다면 this는 최상위 객체 window를 가르키기 때문에 객체 안에 있는 키 값들을 인식하지 못한다. 그렇기 때문에 메소드를 선언할 때, 화살표 함수를 쓰는 것은 피해야 한다.
+
+#### 5. 객체 배열 
+> 객체에서 배열을 사용 할 수 있다.
+<pre><code>
+let object = [
+    {name: '사과', price: 1300},
+    {name: '바나나', price: 1500},
+    {name: '배', price: 1200}
+]
+
+console.log(`${object[0].name}의 가격은 ${object[0].price}입니다.`);
+
+let objfunc = function(fruit) {
+    console.log(`${fruit.name}의 가격은 ${fruit.price}입니다.`);
+}
+
+for (let obj of object) {
+    objfunc(obj);
+}
+</code></pre>
+
+#### 6. 생성자 함수
+
+
 ## [04월 13일]
 #### 1. 함수 (Function)
 ##### 1-1. 익명함수

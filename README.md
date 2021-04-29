@@ -1,19 +1,49 @@
 # 진승범 [201840230]
 
 ## [04월 27일]
-#### 1. setInterval(), setTimeout(), clearInterval()
-> setInterval() : 일정 시간마다 함수를 반복 실행
-> setTimeout() : 일정 시간 후에 해당 함수를 실행
->clearInterval() : 반복하는 함수를 종료
-
-#### 2. 선언적 함수와 익명함수 호출 순서
-
-#### 3. 익명함수와 화살표 함수의 차이 (this 키워드)
-
-#### 4. 객체
-> 배열은 index 로 값을 구분하지만 객체는 key 값으로 값을 구분한다.
+### 1. 타이머 함수
+> setInterval() : 일정시간마다 함수를 반복 실행<br>
+> setTimeout() : 일정시간 후에 해당 함수를 실행<br>
+>clearInterval() : 특정시간마다 반복하는 함수를 종료<br>
 <pre><code>
-let product = {
+let foo = setInterval( () => {
+    console.log("출력합니다.");
+}, 1000);
+
+setTimeout(function() {
+    clearInterval(foo);
+},5000);
+</code></pre>
+> 해당 코드는 "출력합니다" 라는 문자열을 1초 마다 반복실행 하고, setTimeout 함수 안에 clearInterval 함수를 넣어서 foo 함수를 5초 후에 실행중지 시키는 코드이다.<br> 출력결과를 확인하면
+<pre><code>출력합니다.
+출력합니다.
+출력합니다.
+출력합니다.
+</code></pre>
+> 이런식으로 4번만 반복 되는 것을 확인할 수 있다. 이 경우에는 setTimeout() 함수가 5000ms가 되자마자, clearInterval() 함수를 실행시켜, "출력합니다." 라는 구문을 출력하는 setInterval() 함수가 실행되기 전에 clearInterval() 함수가 작동하는 것을 확인할 수 있다. 문자열을 5번 출력하고 싶으면 setTimeout() 함수의 시간에 여유값을 주면 원하는 만큼 출력시킬 수 있다. <br> ex) 5050, 5100 (5001 같이 차이가 너무 작은 값은 효과가 없다.)
+### 2. 선언적 함수와 익명함수 호출 순서
+> 선언적 함수와 익명함수의 이름을 동일하게 지정하고, 함수를 호출하면 익명함수의 내용이 실행된다. 그 이유는 무엇일까?
+<pre><code>
+foo = () => {
+    console.log("첫번째 함수");
+}
+
+function foo () {
+    console.log("두번째 함수");
+}
+
+foo();
+</code></pre>
+> 위 코드의 출력결과는 "첫번째 함수" 이다 <br>
+> 분명 선언적 함수를 익명 함수보다 아래에 선언했는데도 불구하고, 먼저 선언한 익명함수가 실행이 되었다.<br> 이는 우리가 사전에 알고 있는 변수의 초기화 개념이랑 다르다.
+> <br> 자바스크립트는 코드를 컴파일 할 때, 먼저 선언적 함수를 읽는다. 즉 순차적으로 코드를 분석하는 것이 아닌, 선언적 함수를 미리, 먼저 읽는다는 것이다. 그래서 익명함수가 선언되기 전에 먼저 선언적 함수 foo가 읽힌 것이다. 그 뒤에 익명함수 foo가 선언되었기에 선언적 함수의 내용을 덮어쓰는 것이다.
+### 3. 익명함수와 화살표 함수의 차이 (this 키워드)
+> 익명함수에서는 this 키워드는 자신을 호출한 객체를 가리키고,
+> 화살표 함수에서의 this 키워드는 상위 스코프를 가리킨다. 또한 익명함수의 this는 동적바인딩 즉, 익명함수를 호출한 위치에 따라 this가 달라지고, 화살표 함수의 this는 정적바인딩 함수가 선언된 기준으로 this가 가리키는 객체가 정해진다.
+### 4. 객체
+> 배열은 index 로 값을 구분하지만 객체는 key 값으로 값을 구분한다.
+<pre>
+<code>let product = {
     제품명: '신라면',
     제조사: '농심'.
     가격: 900,
@@ -21,8 +51,8 @@ let product = {
 }
 </code></pre>
 > 이런식으로 객체를 구성할 수 있다. 앞에 [제품명, 제조사, 가격, 칼로리]가 key 값이 되는 것이다. 이를 출력하려면<br> console.log(product[key]) 의 형태로 출력할 수 있다.
-<pre><code>
-console.log(product[제품명]);
+<pre>
+<code>console.log(product[제품명]);
 console.log(product[제조사]);
 console.log(product[가격]);
 console.log(product[칼로리]);
@@ -51,7 +81,7 @@ object.print();
 </code></pre>
 > print 함수에서 ket값의 앞에 this 키워드를 쓰지 않으면, object 스코프 밖의 name 변수와 price 변수를 찾기 때문에 정의되지 않았다고 오류가 뜬다. 또한 메소드를 화살표 함수로 선언했을 때 this 키워드를 쓴다면 this는 최상위 객체 window를 가르키기 때문에 객체 안에 있는 키 값들을 인식하지 못한다. 그렇기 때문에 메소드를 선언할 때, 화살표 함수를 쓰는 것은 피해야 한다.
 
-#### 5. 객체 배열 
+### 5. 객체 배열 
 > 객체에서 배열을 사용 할 수 있다.
 <pre><code>
 let object = [
@@ -60,8 +90,6 @@ let object = [
     {name: '배', price: 1200}
 ]
 
-console.log(`${object[0].name}의 가격은 ${object[0].price}입니다.`);
-
 let objfunc = function(fruit) {
     console.log(`${fruit.name}의 가격은 ${fruit.price}입니다.`);
 }
@@ -69,10 +97,27 @@ let objfunc = function(fruit) {
 for (let obj of object) {
     objfunc(obj);
 }
+
+출력결과:
+사과의 가격은 1300입니다.
+바나나의 가격은 1500입니다.
+배의 가격은 1200입니다.
 </code></pre>
+> 위의 코드는 object 라는 변수 안에 3개의 객체가 존재하고 있는 것을 확인할 수 있다. object[0]은 가격이 1300원인 사과이고, object[1]은 1500원의 바나나이고, object[2]는 1200원인 배인 것이다. for of 반복문으로 배열을 차례대로 출력해준 모습이다.
+### 6. 생성자 함수
+> 생성자 함수는 객체를 생성하는 함수이다. 대문자로 시작하는 이름을 사용한다. 
 
-#### 6. 생성자 함수
+<pre><code>function Product(name, price) {
+    this.name = name;
+    this.price = price;
+}
 
+let product = new Product('사과',1500);
+
+console.log(product)
+</code></pre>
+> Product 라는 생성자 함수를 만들고, name과 price를 매개변수로 받는다. 그리고 객체의 인스턴스 변수들을 매개 값들로 초기화한다.
+그 후에 product 라는 변수에 Product 객체를 집어넣고 출력한다.
 
 ## [04월 13일]
 #### 1. 함수 (Function)

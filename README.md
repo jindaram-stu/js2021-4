@@ -1,5 +1,170 @@
 # 진승범 [201840230]
 
+## [05월 04일]
+### 1. 생성자 함수
+> 생성자 함수는 객체를 만드는 함수로써, 함수의 이름의 첫번째 문자가 대문자로 쓰여진다.
+<pre><code>
+function Product (name, price) { // 첫글자 대문자
+    this.name = name;
+    this.price = price;
+}
+let product1 = new Product('사과','1500');
+let product2 = new Product('바나나','2000');
+console.log(product1);
+console.log(product2.name);
+console.log(product2.price);
+
+출력결과 :
+Product { name: '사과', price: '1500' }
+바나나
+2000
+</code></pre>
+> 위 코드처럼 Product 생성자 함수를 이용해서 객체를 생성할 수 있다.
+즉, name과 price 항목이 있는 객체가 2개 만들어진 것이다. 그리고 값까지 출력하는 것을 확인 할 수 있다.
+
+### 2. 프로토 타입
+> 생성자 함수로 만든 객체는 프로토타입 공간에 메소드를 지정해서 모든 객체가 공유 하도록 한다. 해당 함수를 생성자 함수로 사용했을 때만 의미가 있다.
+<pre><code>
+function Product(name, price) {
+    this.name = name;
+    this.price = price;
+}
+
+// case 1 :
+// 변수에 객체 이름을 지정해 원하는 객체를 정할 수 있다.
+Product.prototype.print_product = function() { 
+    console.log(`${product.name}의 가격은 ${product.price}원 입니다.`);
+}
+
+// case 2:
+// 모든 객체가 공유하는 메소드를 만들 수 있다.
+Product.prototype .print_all = function() {
+    console.log(`${this.price}원의 가격을 가지고 있는 과일은 ${this.name} 입니다.`);
+}
+
+let product = new Product("복숭아",3000);
+let product2 = new Product("자두",1000);
+
+
+product.print_product();
+product.print_all();
+product2.print_all();
+</code></pre>
+> 위 코드처럼 프로토타입을 이용해 객체가 공유하는 메소드를 생성할 수 있다.
+
+### 3. null
+> 'null'은 값이 없는 상태를 의미한다.
+<pre><code>let zeroNumber = 0;
+let falseBoolean = '';
+let emptyString = '';
+let undefinedValue;
+let nullValue = null;
+
+if (zeroNumber == null) {
+    console.log('0은 존재하지 않는 값입니다.');
+} if (falseBoolean == null) {
+    console.log('false는 존재하지 않는 값입니다.');
+} if (emptyString == null) {
+    console.log('빈 문자열은 존재하지 않는 값입니다.');
+} if (undefinedValue == null) {
+    console.log("undefined는 존재하지 않는 값입니다.');
+} if (nullValue == null) {
+    console.log('null은 존재하지 않는 값입니다.');
+}
+
+출력 결과 :
+undefined는 존재하지 않는 값입니다.
+null은 존재하지 않는 값입니다.
+</code></pre>
+> zeroNumber, falseBoolean, emptyString는 0,'',''의 경우 javascript에선 false 값이 있는 것으로 판단하기 때문에 null 값은 해당하지 않는다. 그렇기 때문에 undeifendValue와 null값이 직접적으로 들어가 있는 nullValue에 대해서만 null이라고 판단한다.
+
+
+### 4. 기본 자료형과 객체 자료형
+> 자바스크립트의 기본자료형에는 String, Number, Boolean 등이 있다.
+그리고 이런 값들에 대해서 객체를 만들 수 있는 객체 자료형들도 존재한다. 
+<pre><code>let number = 15; // type은 Number이다.
+let str = "안녕"; // type은 String이다.
+let torf = ture; // type은 Boolean이다.
+
+let number2 = new Number(15); // type은 Object이다.
+let str2 = new String("안녕"); // type은 Object이다.
+let torf2 = new Boolean(true); // type은 Object이다.
+</code></pre>
+> 기본자료형은 속성과 메소드를 사용할 때, 자동으로 객체 자료형으로 변환되어 속성과 메소드를 사용한다. 아래의 코드를 참고하면 된다.
+<pre><code>let str1 = '과자|1500';
+console.log(str1.split('|'));
+
+// split은 String 객체의 메소드이지만, 기본자료형이 자동으로 객체자료형으로 변환되어 사용된다.
+</code></pre>
+
+> 기본 자료형과 객체 자료형의 차이점으로는 바로 메소드를 추가 할 수 없고이다. 기본 자료형은 prototype을 이용해 메소드를 추가할 수 없는 반면, 객체 자료형으로 선언된 변수는 prototype을 이용해 메소드를 추가 할 수 있다. 이것이 가능한 것은 바로 '객체'이기 때문이다.
+
+<pre><code>let primitiveNumber = 15;
+
+primitiveNumber.method = function () {
+    return 'Primitive Method';
+}
+
+console.log(primitiveNumber.method);
+
+출력 결과 
+[ 오류 출력 ]
+</code></pre>
+<pre><code>
+let primitiveNumber = 200;
+
+Number.prototype.method = function() {
+    return 'Primitive Method';
+}
+
+console.log(primitiveNumber.method);
+
+// 프로토타입 함수를 이용해 기본 타입에 메소드를 추가시킨 모습이다.
+</code></pre>
+
+> 위와 같이 프로토타입을 이용하면 기본 자료형에도 메소드를 추가시킬 수 있다.
+
+### 5. Number 객체
+> new Number(typeof_Number); 와 같은 형식으로 객체 생성 <br>
+
+> <b>Number 객체의 메소드</b> <br>
+> - toExponential() : 숫자를 지수 표시로 표현한 문자열 리턴
+>- toFixed() : 숫자를 고정소수점으로 표현한 문자열 리턴
+> - toPrecision() : 숫자 길이에 따라 지수 표시 또는 고정소수점 표시된 문자열 리턴
+
+><b>Number 생성자 함수의 속성 </b>
+> - MAX_VALUE : JS가 나타낼 수 있는 최대 숫자
+> - MIN_VALUE : JS가 나타낼 수 있는 최소 숫자 
+> - NaN : JS로 나타낼 수 없는 숫자
+> - POSITIVE_INFINITY : 양의 무한대 숫자
+> - NEGATIVE_INFINITY : 음의 무한대 숫자
+
+### 5. String 객체
+> new String(typeof_String); 와 같은 형식으로 객체 생성 <br>
+
+> <b>String 객체의 메소드</b> <br>
+> - charAt(position) : position 순서의 문자를 리턴 
+>- charCodeAt(position) : position 순서의 문자의 유니코드를 리턴
+> - indexOf(searchString, position) : 앞에서부터 일치한 문자열의 위치를 리턴
+> - lastIndexOf(searchString, position) : 뒤에서부터 일치한 문자열의 위치를 리턴
+> - match(a) : 문자열 안에 a가 있는지 확인
+> - replace(a, b) : 문자열 안의 a를 b로 바꾼 뒤에 리턴
+> - search(a) : a와 일치하는 문자열의 위치를 리턴 
+> - slice(start, end) : 특정 위치의 문자열을 추출해 리턴 
+> - split(separator, limit) : separator로 문자열을 잘라, 리턴
+> - substr(start, count) : start 부터 count까지 문자열을 잘라 리턴
+> - substring(startm end) : start부터 end 까지 문자열을 잘라 리턴
+> - toLowerCase() : 문자열을 소문자로 바꾸어 리턴
+> - toUpperCase() : 문자열을 대문자로 바꾸어 리턴
+
+
+><b>String 생성자 함수의 속성 </b>
+> - length : 문자열의 길이를 나타낸다.
+
+
+
+
+
 ## [04월 27일]
 ### 1. 타이머 함수
 > setInterval() : 일정시간마다 함수를 반복 실행<br>

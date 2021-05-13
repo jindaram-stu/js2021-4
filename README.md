@@ -1,6 +1,259 @@
 # 진승범 [201840230]
+## <b>[05월 11일]</b>
+### 1. Date 객체
+> 날짜와 관련된 객체이다. <br>
+> <b> Date 객체 </b>
+> - new Date() : 현재 시간을 기준으로 Date 객체를 생성합니다.
+> - new Date(유닉스 타임) | 유닉스 타임(1970년 1월 1일 00시 00분 00초부터 경과한 밀리초)으로 Date 객체를 생성합니다.
+> - new Date(<시 간 문자열>) | 문자열로 Date 객체를 생성합니다.
+> - new Date(<년>, <월-1>, <일>, <시간>, <분>, <초>, <밀리초>) | 시간 요소(년,월-1,일,시간,분,초,밀리초)를 기반으로 Date 객체를 생성합니다.
+<pre><code>
+let dateA = new Date(); // 현재시간 기준
+console.log(dateA);
 
-## [05월 04일]
+let dateB = new Date(1600000000000); // 유닉스타임 기준
+console.log(dateB);
+
+let dateC = new Date('1999-12-04'); // 문자열 기준
+console.log(dateC);
+
+let dateD = new Date(2021,12-1,4,0,0,0,0); // 시간요소 기준
+console.log(dateD);
+</code></pre>
+> Date 객체를 비롯한 많은 객체들은 get 메소드와 set 메소드를 가지고 있다. get 메소드는 값을 얻는 내용의 메소드이고, set 메소드는 값을 초기화하는 메소드이다.
+<br>
+
+> <b> get 메소드</b> <br>
+>> - getFullYear() : <년> 값을 얻습니다.
+>> - getMonth() : <월> 값을 얻습니다.
+>> - getDate() : <일> 값을 얻습니다.
+>> - getHours() : <시간> 값을 얻습니다.
+>> - getMinutes() : <분> 값을 얻습니다.
+>> - getSeconds() : <초> 값을 얻습니다.
+>> - getMilliseconds() : <`ms`>값을 얻습니다.
+>> - getTime() : 유닉스 타임 기준의 <`ms`> 값을 얻습니다.
+
+> <b> set 메소드</b>
+>> - setFullYear() : <년> 값을 설정합니다.
+>> - setMonth() : <월> 값을 설정합니다.
+>> - setDate() : <일> 값을 설정합니다.
+>> - setHours() : <시간> 값을 설정합니다.
+>> - setMinutes() : <분> 값을 설정합니다.
+>> - setSeconds() : <초> 값을 설정합니다.
+>> - setMilliseconds() : <`ms`>값을 설정합니다.
+>> - setTime() : 유닉스 타임 기준의 <`ms`> 값을 설정합니다.
+
+### 1-2. Date 객체 (두 날짜 사이의 차이 구하기)
+> Date 객체로 날짜 간의 차이를 구할 수 있다.
+> 유닉스 타임을 기준으로 날짜 간의 ms 차이를 이용해 두 날짜 사이의 차이를 구할 수 있다.
+<pre><code>let new = new Date();
+let before = new Date('December 9, 1991');
+
+let interval = now.getTime() = before.getTime();
+console.log(interval);
+
+interval = Math.floor(interval / (1000*60*60*24));
+console.log(interval);
+// 해당 ms를 1000으로 나눠 초로 바꾸고 그 <초>를 60으로 나눠 분으로 변경하고, 그 <분>을 60 나눠 시간으로 변경하고, 그 <시간>을 24로 나누어 <일>로 변경해주었다.
+
+출력결과 :
+928493023985 => 91년 12월 9일 부터 현재 사이의 ms 차이
+10746 : 91년 12월 9일부터 현재 까지의 일 수 차이
+</code></pre>
+
+### 2. Array 객체
+> Array 객체는 배열가 관련된 객체이다 <br>
+> Array 객체의 메소드
+> - concat() : 매개 변수로 입력한 배열의 요소를 모두 합쳐 배열로 만들어 리턴
+> - join() : 배열 안의 모든 요소를 문자열로 만들어 리턴
+> - pop() : 배열의 마지막 요소를 제거하고 리턴 
+> - push() : 배열의 마지막 부분에 새로운 요소 추가
+> - reverse() : 배열의 요소 순서를 뒤집음
+> - slice() : 배열 요소의 지정한 부분 리턴
+> - sort() : 배열의 요소를 정렬
+> - splice() : 배열 요소의 지정한 부분을 삭제하고 삭제한 요소를 리턴
+
+> - forEach() : 배열의 요소를 하나씩 뽑아 반복을 돌립니다.
+> - map() : 콜백 함수에서 리턴하는 것을 기반으로 새로운 배열을 만듭니다.
+> - filter() : 콜백 함수에서 true를 리턴하는 것으로만 새로운 배열을 만들어 리턴합니다.
+
+### 3. 프로토 타입에 메소드 추가하기
+> 프로토 타입에 메소드를 추가하면 해당 자료형을 가지고 있는 변수 전체에 메소드를 추가 할 수 있다.
+<pre><code>String.prototype.contains = function(input) {
+    return this.indexOf(input) >= 1;
+}
+ // true 출력
+console.log('안녕하세요'.contains('안녕'));
+// false 출력
+console.log('안녕하세요',contains('데굴데굴')); 
+</code></pre>
+### 4. underscore 라이브러리 사용
+> underscore 라이브러리를 사용하면 쉽게 정렬을 더욱 더 쉽게 할 수 있다. 
+
+\<script src = "http://underscrorejs.org/underscore.js">\</script>
+
+> 해당 구문을 통해 underscore 라이브러리의 메소드들을 사용할 수 있게 된다.
+
+
+```
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>    
+    <script src="https://underscorejs.org/underscore-umd.js"></script>
+</head>
+<body>
+    <script>
+        const foo = [
+        {
+            name : '고구마',
+            price : 1000
+        },
+        {
+            name : '감자',
+            price : 1500
+        },
+        {
+            name : '바나나',
+            price : 500
+        },
+        {
+            name : '사과',
+            price : 2500
+        }];
+        const outputA = _.sortBy(foo, (item) => item.name); // 이름순으로 오름차순
+        console.log(outputA);
+        const outputB = _.sortBy(foo, (item) => item.price); // 가격순으로 오름차순
+        console.log(outputB);
+    </script>   
+</body>
+</html>
+```
+
+>해당 웹 페이지를 열고 검사를 통해 console 창을 확인해보면, foo 객체 배열이 각각 정렬된 것을 확인 할 수 있다.
+
+### 5. JSON
+> JSON은 자바스크립트 객체를 사용한 데이터 표현 방법이다. 기본 형태를 아래와 같다.
+```
+[ 
+    {
+        "name":"고구마",
+        "price":"1500"
+    
+    },
+    {
+        "name":"감자",
+        "price":"1000"
+    
+    },
+    {
+        "name":"바나나",
+        "price":"3500"
+    
+    }
+]
+```
+> 제약사향으로는
+> + 문자열은 큰 따옴표로 만듬 ex) "감자"
+> + 모든 키는 큰따옴표로 써야함 ex) "name"
+> + 숫자, 문자열, Bool 자료형만 사용가능
+
+> <b>JSON 객체의 메소드</b>
+> + JSON.stringify(<객체>,<변환 함수>,<공백 개수>)
+> + :자바스크립트 객체를 문자열로 만듭니다.
+> + JSON.parse(<문자열>)
+> + :문자열을 자바스크립트 객체로 파싱합니다.
+
+### 6. 예외처리
+> <b>예외란?</b><br>
+> : 실행에 문제가 발생하면 자동 중단됨. 이렇게 발생한 오류<br>
+> <b>예외처리란?</b> <br>
+> : 오류에 대처할 수 이게 하는것
+
+> 기본 예외 처리 방법 <br>
+> 예외가 발생가능한 지점에 if문을 이용해서 오류가 발생 가능한 상황에 대해서는 실행을 하지 않도록 코딩한다.
+```
+function callTenTimes(callback) {
+    if (callback) {
+        for (let i = 0; i<10; i++) {
+            callback();
+        } 
+    } else {
+        console.log("callback이 지정되지 않았습니다.);
+    }
+}
+
+callTenTimes(function() {
+    console.log("안녕하세요");
+});
+
+callTenTime();
+
+출력결과 :
+안녕하세요
+안녕하세요
+안녕하세요
+... (10번 반복)
+callback이 지정되지 않았습니다.
+```
+
+> <b> 고급예외처리 방법 </b> <br>
+> try catch finally 구문을 사룡하여 예외처리를 한다.
+> <br> <b>try</b> : 예외가 발생 가능한 코드를 적는다.
+> <br> <b>catch</b> : 예외 발생 시 실행할 코드를 적는다. (예외가 발생한 시점에서 바로 실행된다.)
+> <br> <b>finally</b> : 예외 발생과 상관없이 무조건 실행되는 코드이다.
+
+```
+// Range Error : 배열 생성 시 음수로 크기를 지정하면 생기는 예외
+try {
+    const array = new Array[-1000]
+} catch {
+    console.log("예외발생");
+} finally {
+    console.log("finally 구문 실행");
+}
+
+출력결과 :
+예외발생
+finally 구문 실행
+```
+>  <b>예외 객체</b> <br>
+> 예외가 발생하면 어떤 예외가 발생했는지 전달한다. 
+```
+try {
+    // 강제 예외 발생
+    error.error.error;
+} catch (exception) {
+    console.log(exception.name);
+    console.log(exception.message);
+}
+
+출력결과 :
+Reference Error
+error is not defined
+```
+
+> <b>예외 강제 발생</b> <br>
+> throw 키워드를 사용해서 예외를 강제적으로 발생 시킬 수 있다.  throw 키워드 뒤에느 문자열이나 Error 객체를 입력한다.
+
+> throw '강제 예외'
+
+> 또한 자세한 예외 출력은 Error 객체를 통해 가능하다.
+
+```
+const error = new Error('메시지');
+error.name = '내 마음대로 오류';
+error.message = '오류의 메시지';
+
+throw error;
+
+출력결과 :
+내 마음대로 오류 : 오류의 메시지
+... 오류내용 ...
+```
+
+
+## <b>[05월 04일]</b>
 ### 1. 생성자 함수
 > 생성자 함수는 객체를 만드는 함수로써, 함수의 이름의 첫번째 문자가 대문자로 쓰여진다.
 <pre><code>

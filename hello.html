@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<<<<<<< HEAD
-    <script>
-    console.log('5+3 = ${5+3}');
-    alert('5+3 =' + (5+3));
-    </script>
-=======
-    <script type = "text/javascript" src = "JavaScriptSourceCode/if.js"></script>
->>>>>>> 2379e510c1fd34933ea6c4a17912b4b41e66be8c
+    <title>Document</title>    
+    <script src="https://underscorejs.org/underscore-umd.js"></script>
 </head>
 <body>
-    
+    <script>
+
+        const foo = [
+        {
+            name : '고구마',
+            price : 1000
+        },
+        {
+            name : '감자',
+            price : 1500
+        },
+        {
+            name : '바나나',
+            price : 500
+        },
+        {
+            name : '사과',
+            price : 2500
+        }];
+
+        const outputA = _.sortBy(foo, (item) => item.name);
+        console.log(outputA);
+        const outputB = _.sortBy(foo, (item) => item.price);
+        console.log(outputB);
+    </script>   
 </body>
 </html>

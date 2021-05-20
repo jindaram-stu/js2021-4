@@ -1,6 +1,9 @@
+
+
 # 진승범 [201840230]
 5월 
-- [05월 11일](#0511)<br>
+- [05월 18일](#0518)<br> <
+- [05월 11일 : Date, Array, Prototype, 라이브러리, JSON](#0511)<br>
 - [05월 04일](#0504)<br>
 
 4월
@@ -11,6 +14,109 @@
 - [03월 30일](#0330)<br>
 - [03월 23일](#0323)<br>
 - [03월 16일](#0316)
+## <b>[05월 18일] </b> <a id="0518"></a>
+### 1. process의 exit 이벤트와 uncaughtException 이벤트
+Node.js는 process 전역 객체를 제공한다. process 객체는 프로세스 정보를 제공하며, 제어할 수 있게 하는 객체이다. 
+><b>Process 객체의 속성</b> <br>
+> - env : 컴퓨터의 환경 정보를 나타냅니다.
+> - version : Node.js의 버전을 나타냅니다.
+> - arch : 프로세서의 아키텍처를 나타냅니다.
+
+><b>Process 객체의 메소드</b> <br>
+> - exit([exitCode = 0]) : 프로그램을 종료합니다.
+> - memoryUsage() : 메모리 사용 정보 객체를 리턴합니다.
+> - uptime() : 현재 프로그램이 실행된 시간을 리턴합니다. 
+
+> <b>Process 객체의 이벤트 메소드 및 이벤트</b> <br>
+> - on(<이벤트 이름>,<이벤트 핸들러>) : 이벤트를 연결합니다. 
+> - exit : 프로세스가 종료될 때 발생합니다.
+> - uncaughtException : 예외가 일어날 때 발생합니다.
+### 2. 모듈 및 OS 모듈
+> 모듈을 추출할 때에는 변수 이름을 모듈 이름으로 사용하는 것이 일반적이다.
+```
+// require 함수를 통해서 os와 관련된 모듈을 상수 os 변수에 저장하였다.
+cosnt os = require('os');
+```
+
+><b>OS 모듈 메소드</b> <br>
+> - os.tmpdir() : 임시 저장 폴더의 위치
+> - os.endianness() : CPU의 endianness(BE 또는 LE)
+> - os.hostname() : 호스트(컴퓨터) 이름
+> - os.type() : 운영체제 이름
+> - os.platform() : 운영체제 플랫폼
+> - os.arch() : 운영체제 아키텍처
+> - os.release() : 운영체제 버전
+> - os.uptime() : 운영체제가 실행된 시간
+> - os.loadavg() : 로드 에버리지 정보를 담은 배열
+> - os.totalmem() : 시스템의 총 메모리
+> - os.freemem() : 시스템의 가용 메모리
+> - os.cpus() : CPU의 정보를 담은 객체. CPU의 세부 정보를 반환합니다.
+> - os.networkInterfaces() : 네트워크 인터페이스 정보를 담은 배열<br>
+[ 출처 : https://edu.goorm.io/learn/lecture/557/%ED%95%9C-%EB%88%88%EC%97%90-%EB%81%9D%EB%82%B4%EB%8A%94-node-js/lesson/174359/os-%EB%AA%A8%EB%93%88]
+
+### 3. URL 모듈
+```
+const url = require('url');
+
+console.log(url.parse('https://naver.com'));
+```
+><b>URL 모듈 메소드</b> <br>
+> - parse(urlStar) : URL 문자열을 URL 객체로 변환해 리턴합니다.
+> - format(urlObj) : URL 객체를 URL 문자열로 리턴합니다.
+> - resolve(from,to) : 매개 변수를 조합하여 완전한 URL 문자열을 생성해 리턴합니다.
+
+### 4. FileSystem 모듈과 동기/비동기
+FileSystem 모듈은 파일을 쓰거나 읽을 수 있게 하는 모듈이다. 모듈 추출은 아래와 같이 한다.
+```
+const fs = require('fs');
+```
+
+><b>FileSystem 모듈 메소드</b> <br>
+> - fs.readFileSync(<파일 이름>) : 동기적으로 파일을 읽어들입니다.
+> - fs.readFile(<파일이름><콜백함수>) : 비동기적으로 파일을 읽어 들입니다.
+> - fs.writeFileSync(<파일 이름>,<문자열>) : 동기적으로 파일을 읽어들입니다.
+> - fs.writeFile(<파일이름>,<문자열>,<콜백함수>) : 비동기적으로 파일을 읽어 들입니다.
+
+> <b>비동기와 동기의 차이점</b> <br>
+> '동기' 방식은 앞선 코드가 끝나야 다음 코드를 실행하는 방식이다.<br> 예를 들면 우리가 피자와 치킨을 시켜먹는다고 가정했을 때, 피자와 치킨 집에 동시에 전화해서 시킨다.  <br>이러는 이유는 그렇게 해야만 동일하게 배달이 와서 피자와 치킨을 같이 먹을 수 있기 때문이다.<br> 하지만 동기 방식으로 주문을 한다고 가정하면 피자집에 전화로 주문을 하고 배달이 오고 나서야 치킨집에 전화해서 주문을 하는 것이다. <br> 이런식으로 하면 피자와 같이 치킨을 먹지 못하고, 치킨이 오는 사이에 피자가 차갑게 식게된다. 그래서 우리는 비동기 방식으로 주문을 하는 것이다.
+
+> 코드또한 마찬가지이다. 여러가지 일을 해야하는데 '동기'방식으로 진행을 하면 비효율적이고 오래 일을 하게 된다. 그렇기 때문에 이를 해결하는 비동기 방식이 나타난 것이다. 코드를 예를 들어보자.
+
+```
+const fs = require('fs');
+
+const file = fs.readFileSync('text.txt');
+console.log(file);
+console.log(file.toString());
+
+// 동기방식의 파일 읽기
+```
+```
+const fs =  require('fs');
+
+const file = fs.readFile('text.txt',(error,file) => {
+    console.log(file);
+    console.log(file.toString());
+});
+console.log("다른일");
+// 비동기방식의 파일읽기
+// 이런식으로 비동기 방식으로 코드를 구성하면 파일을 읽는 동안에 "다른일"이 출력이 된다. 즉 두 가지 일을 동시에 하는 것이다.
+```
+
+> 비동기 처리의 장점<br>
+> 웹 서버를 C++ 프로그래밍 언어로 만들면 무척 빠르지만, 개발과 유지보수는 어렵다. 
+> 프로그래밍 언어 자체는 느리지만 큰 의미가 없다고 판단해 개발 속도와 유지보수성이 졸은 프로그래밍 언어를 사용한다. 
+> 자바스크립트는 C++, 자바보다 느리지만, Node.js를 사용하면 손쉽게 비동기처리를 구현하여 빠른 처리가 가능하다.
+
+### 5. NPM (Node Package Manager)
+> node.js에서는 npm을 이용해서 외부 모듈을 쉽게 설치하고 활용 가능하다.
+
+```
+> npm install <모듈 이름>
+예) npm install express
+// 명령어 뒤에 @ 기호를 사용해서 원하는 버전을 설치할 수 있다. 
+```
+
 ## <b>[05월 11일]</b> <a id="0511"></a>
 ### 1. Date 객체
 > 날짜와 관련된 객체이다. <br>

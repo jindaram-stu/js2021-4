@@ -2,7 +2,8 @@
 
 # 진승범 [201840230]
 5월 
-- [05월 18일](#0518)<br>
+- [05월 25일](#0525)<br>
+- [05월 18일](#0518)<br> 
 - [05월 11일 : Date, Array, Prototype, 라이브러리, JSON](#0511)<br>
 - [05월 04일](#0504)<br>
 
@@ -14,6 +15,90 @@
 - [03월 30일](#0330)<br>
 - [03월 23일](#0323)<br>
 - [03월 16일](#0316)
+
+## <b>[05월 25일] </b> <a id="0525"></a>
+### 1. express 모듈
+> express 모듈은 웹 서버를 개발하는 모듈이다. 
+```
+$ npm install express 
+```
+> CMD에서 해당 구문을 통해 해당 경로에 express 모듈을 설치할 수 있다.
+
+><b>Express 모듈의 메소드</b> <br>
+> - express() : 서버 애플리케이션 객체를 생성합니다.
+> - app.use() :  요청이 왔을 때, 실행할 함수를 지정합니다.
+> - app.listen() : 서버를 실행합니다.
+
+```
+// 모듈을 추출합니다.
+const express = require('express');
+
+// 서버를 생성합니다.
+const app = express();
+
+// request 이벤트 리스너를 설정합니다.
+app.use((request.response) => {
+    response.send('<h1>Hello express</h1>');
+});
+
+// 서버를 실행합니다.
+app.listen(52273, () => {
+    console.log('Server running at http://127.0.0.1:52273');
+});
+
+```
+> 위 코드는 express 모듈을 가져와 서버를 생성하고, request가 들어오면 response로 제목 스타일의 Hello express를 출력하는 것이다. 그리고 52273의 포트로 서버를 실행하는 것이다. 서버를 실행하게 된다면 콘솔에 'Server running ... 52273' 이라는 문구가 출력된다.
+
+### 2. 페이지 라우팅
+> 페이지 라우팅이란 클라이언트 요청에 적절한 페이지를 제공하는 기술이다. 
+
+><b>Express 모듈의 페이지 라우팅 메소드</b> <br>
+> - get(path,callback) : GET 요청이 왔을 때 발생했을 때 이벤트 리스너를 지정합니다.
+> - post(path,callback) : POST 요청이 왔을 때 발생했을 때 이벤트 리스너를 지정합니다.
+> - put(path,callback) : PUT 요청이 왔을 때 발생했을 때 이벤트 리스너를 지정합니다.
+> - delete(path,callback) : DELETE 요청이 왔을 때 발생했을 때 이벤트 리스너를 지정합니다.
+> - all(path,callback) : 모든 요청이 왔을 때 발생했을 때 이벤트 리스너를 지정합니다.
+
+### 3. response 객체
+
+><b>response 객체의 메소드</b> <br>
+> - send() : 데이터 본문을 제공합니다.
+> - status() : 상태 코드를 제공합니다.
+> - set() : 헤더를 설정합니다.
+
+> send() 메소드는 사용자에게 데이터 본문을 제공합니다. 또한 가장 마지막에 실행해야 하며, 두번 실행할 수는 없습니다.
+
+### 4. Content-type 
+
+> Content-type은 클라이언트로 제공되는 데이터의 형태입니다. text, html, png, mpe, json 등 여러가지가 존재합니다. 
+또하 type() 메소드로 Content-type을 MIME 형식으로 지정할 수 있습니다. 
+
+```
+app.get('/image',(request, response) => {
+    fs.readFile('image.png',(error,data) => {
+        response.type('image/png');
+        response.send(data);
+    });
+});
+```
+> 위 코드와 같이 image.png 파일을 불러와 response의 content-type을 image/png로 설정하여 사진 파일을 제공할 수 있습니다. 이런것 처럼 audio 파일, html 파일, txt 파일 등 다양하게 제공할 수 있습니다.
+
+### 5. request 객체
+> request 객체는 요청에 해당하는 객체를 말합니다. 즉, 클라이언트가 입력한 값들도 요청에 해당합니다.
+
+### 6. 미들 웨어
+> 익스프레스에서의 미들웨어는 클라이언트와 서버 사이에서 요청과 응답을 조율하고 관리하는 주체이다. 미들웨어는 요청과 응답을 조작하여 기능을 추가하기도 하고, 나쁜 요청을 걸러내기도 한다. app.use 메소드의 인자로 들어 있는 함수가 미들웨어다.
+
+#### 6-1. morgan 미들웨어
+> morgan은 express의 미들웨어로 사용할 수 있는 외부 모듈이다. 또한 morgan은 로그 출력 미들웨어로써, 웹 요청과 관련된 내용을 출력하는 미들웨어이다.
+
+#### 6-2. body-parser 미들웨어 
+> body-parser 미들웨어는 요청 본문을 분석하는 미들웨어이다. 
+body-parser은 URL 쿼리에 정보를 담아 전송하는 과정에서 클라이언트가 어떤 형태의 Encoding-type으로 요청했는지 확인하는 것을 쉽게 처리한다. 이를 사용하지 않으면 복잡하게 처리한다.
+즉 body-parser 미들 웨어는 put과 post 방식으로 요청된 request.body를 쉽게 분석할 수 있다.
+
+
+
 ## <b>[05월 18일] </b> <a id="0518"></a>
 ### 1. process의 exit 이벤트와 uncaughtException 이벤트
 Node.js는 process 전역 객체를 제공한다. process 객체는 프로세스 정보를 제공하며, 제어할 수 있게 하는 객체이다. 

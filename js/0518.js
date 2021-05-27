@@ -28,6 +28,6 @@ console.log(url.parse('https://naver.com')); */
 
 const fs = require('fs');
 const file = fs.readFileSync('pizza.txt');
-
+console.log
 console.log(file);
 console.log(file.toString());
